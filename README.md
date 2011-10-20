@@ -7,4 +7,4 @@ To use it you nead to rename *config.php.exmple* to *config.php* and change the 
 
 ## Newest Version ##
 You can get the newest version via
-    git clone git@github.com:HoffmannP/TinyTimeTracker.git
+    git clone git://github.com/HoffmannP/TinyTimeTracker.git
