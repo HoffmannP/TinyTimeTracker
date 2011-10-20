@@ -21,7 +21,7 @@ $DatabaseDefinition[TABLE_Worker] = <<<'EOS'
 ) ENGINE = MYISAM;
 EOS;
 
-@require_once("config.php");
+@include_once("config.php");
 if ((!isset($config)) || 
     (!key_exists("host", $config)) ||
     (!key_exists("user", $config)) ||
