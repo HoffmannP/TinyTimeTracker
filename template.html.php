@@ -13,15 +13,16 @@
 	</table>
 	<table id="working">
 	</table>
-	<input class="addTime free" type="button" value="hinzufügen" />
+	<div id="collegues">
+    </div>
 	<div id="shaddow"></div>
 	<div id="append">
 	  <h2>KT Arbeitszeit</h2>
-	  <input name="collegue" type="input"  value="" />
-	  <input name="project"  type="input"  value="" />
-	  <input name="minutes"  type="input"  value="" />
-	  <input name="stop"     type="button" value="stop" />
-	  <input name="submit"   type="button" value="hinzufügen" />
+	  <input name="collegue" tabindex="1" type="text"   value="" />
+	  <input name="project"  tabindex="2" type="text"   value="" />
+	  <input name="addWork"  type="button" value="Beginnen" />
+	  <input name="minutes"  tabindex="3" type="text"   value="" />
+	  <input name="submit"   type="button" value="Hinzufügen" />
 	</div>
   </body>
 </html>

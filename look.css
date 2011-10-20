@@ -41,21 +41,27 @@ td+td+td {
 }
 span#filter { 
   color: Blue;
-  padding-top: 0px;
-  border-top: 2px outset Blue;
 }
-input.addTime {
+input.addTime, #working input[type=button] {
   font-size: 15px;
   border: 2px LightBlue outset;
-  background-color: Ivory;
+  background-color: #EEEEE0;
   border-radius: 5px;
 }
-input.addTime.free { 
-  border-style: none;
-  font-weight: bold;
+tr.even input.addTime, #working tr.even input[type=button] { 
+  background-color: Ivory;
+}
+div#collegues { 
   position: absolute;
   bottom: 20px;
-  right: 20px;
+  width: 96%;
+  right: 2%;
+  text-align: right;
+}
+input.addTime.free, input.addTime.named { 
+  border-style: none;
+  font-weight: bold;
+  margin-left: 5px;
   background-color: DimGrey;
   color: Ivory;
 }
@@ -71,24 +77,58 @@ input.addTime.free {
 #append {
   position: absolute;
   width: 200px;
-  height: 160px;
+  height: 184px;
   left: 50%;
   margin-left: -80px;
   top: 50%;
-  margin-top: -200px;
+  margin-top: -92px;
   background-color: Ivory;
   border: 2px inset LightBlue;
   border-radius: 5px;
   padding: 0 0 25px 30px;
+  font-size: 12px;
 }
 #append h2 {
   font-family: sans-serif;
 }
 #append input {
+  height: 18px;
+  margin-bottom: 4px;
   background-color: Ivory;
-  border: 1px solid DimGrey;
+  border: 2px inset LightBlue;
   width: 160px;
+  font-size: 15px;
 }
-#append input[type=button] {
+#append input[type=button]{ 
+  border-color: LightBlue;
+  font-size: 13px;
+}
+#append input[name=addWork] {
+  width: 78px;
+  height: 50px;
+  float: left;
+}
+#append input[name=submit] {
+  margin-left: 4px;
+  width: 82px;
+  height: 22px;
+}
+#append input[name=minutes] {
+  margin-left: 4px;
+  width: 78px;
+}
+
+#working {
+  position: absolute;
+  left: 50%;
+  bottom: 100px;
+  margin-left: -200px;
+  width: 400px;
+}
+#working td, #working td input[type=text] {
+  width: 100px;
+}
+#working td+td+td+td { 
   width: 80px;
+  text-align: center;
 }

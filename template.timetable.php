@@ -16,5 +16,5 @@
 	<tr class="sum">
 	  <td>Total</td>
 	  <td></td>
-      <td><?php echo MinutesToTime($Minutes[null][null]); ?></td>
+      <td><?php if ($Minutes !== false) {echo MinutesToTime($Minutes[null][null]);} ?></td>
 	</tr>

@@ -44,6 +44,17 @@ function MinutesToTime($minutes) {
   }
 }
 
+function show_collegues($mysql) {
+  $result = $mysql->query("SELECT DISTINCT `Collegue` FROM `" . TABLE_Time . "` UNION DISTINCT SELECT `Collegue` FROM `" . TABLE_Worker . "` ORDER BY `Collegue` ASC");
+  if ($mysql->errno) {die("MySQL project query failed");}
+  $n = $result->num_rows;
+  for ($i=0; $i<$n; $i++) {
+    $c = $result->fetch_row();
+    echo "<input class='addTime named' type='button' value='" . htmlspecialchars($c[0]) . "' />\n";
+  }
+  echo "<input class='addTime free' type='button' value='+' />\n";
+}
+
 function show_time($mysql, $categorie) {
   if (!is_null($categorie)) {
     $WHERE = " WHERE `Project` like '" . $categorie . "%'";
@@ -55,30 +66,33 @@ function show_time($mysql, $categorie) {
   $result = $mysql->query("SELECT DISTINCT `Collegue` FROM `$table`" . $WHERE);
   if ($mysql->errno) {die("MySQL collegue query failed");}
   $n = $result->num_rows;
+  $Collegue = array();
   for ($i=0; $i<$n; $i++) {
     $c = $result->fetch_row();
-    $Collegue[] = $c[0];
+    $Collegue[] = htmlspecialchars($c[0]);
   }
   
   // Fetch projects
   $result = $mysql->query("SELECT DISTINCT `Project` FROM `$table`" . $WHERE);
   if ($mysql->errno) {die("MySQL project query failed");}
   $n = $result->num_rows;
+  $Project = array();
   for ($i=0; $i<$n; $i++) {
     $p = $result->fetch_row();
-    $Project[] = $p[0];
+    $Project[] = htmlspecialchars($p[0]);
   }
   
   // Fetch times
   $result = $mysql->query("SELECT `Project`, `Collegue`, SUM(`Minutes`) as 'Minutes' FROM `$table`" . $WHERE . " GROUP BY `Project`, `Collegue` WITH ROLLUP");
   if ($mysql->errno) {die("MySQL time query failed");}
   $n = $result->num_rows;
+  $Minutes = false;
   for ($i=0; $i<$n; $i++) {
     $row = $result->fetch_assoc();
     if (is_null($row['Collegue']) && !is_null($row['Project'])) {
       continue;
     }
-    $Minutes[$row['Project']][$row['Collegue']] = $row['Minutes'];
+    $Minutes[htmlspecialchars($row['Project'])][htmlspecialchars($row['Collegue'])] = $row['Minutes'];
   }
 
   require_once("template.timetable.php");
@@ -86,6 +100,9 @@ function show_time($mysql, $categorie) {
 
 function edit_time($mysql, $collegue, $project, $minutes) {
   $table = TABLE_Time;
+  $collegue = $mysql->real_escape_string($collegue);
+  $project = $mysql->real_escape_string($project);
+  $minutes = $mysql->real_escape_string($minutes);
   $mysql->query("INSERT `$table` SET `Project` = '$project', `Collegue` = '$collegue', `Minutes` = '$minutes'");
   if ($mysql->errno) {die("MySQL insert failed");}
 }
@@ -94,13 +111,21 @@ function show_workers($mysql) {
   $result = $mysql->query("SELECT `Project`, `Collegue`, DATE_FORMAT(`Stamp`, '%k:%i') as `Time` FROM `$table`");
   if ($mysql->errno) {die("MySQL worker query failed");}
   $n = $result->num_rows;
+  $Worker = array();
   for ($i=0; $i<$n; $i++) {
-    $Worker[] = $result->fetch_assoc();
+    $row = $result->fetch_assoc();
+    $Worker[] = array(
+      "Project"  => htmlspecialchars($row["Project"]),
+      "Collegue" => htmlspecialchars($row["Collegue"]),
+      "Time"     => htmlspecialchars($row["Time"])
+    );
   }
   require_once("template.working.php");
 }
 function add_worker($mysql, $collegue, $project) {
   $table = TABLE_Worker;
+  $collegue = $mysql->real_escape_string($collegue);
+  $project = $mysql->real_escape_string($project);
   $mysql->query("INSERT `$table` SET `Project` = '$project', `Collegue` = '$collegue'");
   if ($mysql->errno) {
     die($mysql->error);
@@ -108,6 +133,7 @@ function add_worker($mysql, $collegue, $project) {
 }
 function abort_worker($mysql, $collegue) {
   $table = TABLE_Worker;
+  $collegue = $mysql->real_escape_string($collegue);
   $mysql->query("DELETE FROM `$table` WHERE `Collegue` = '$collegue' LIMIT 1");
   if ($mysql->errno) {
     die($mysql->error);
@@ -115,6 +141,7 @@ function abort_worker($mysql, $collegue) {
 }
 function save_worker($mysql, $collegue) {
   $table = TABLE_Worker;
+  $collegue = $mysql->real_escape_string($collegue);
   $result = $mysql->query("SELECT `Project`, TIMESTAMPDIFF(MINUTE, `Stamp`, CURRENT_TIMESTAMP) as `Minutes` FROM `$table` WHERE `Collegue` = '$collegue'");
   if ($mysql->errno) {
     die($mysql->error);
@@ -122,10 +149,10 @@ function save_worker($mysql, $collegue) {
   $row = $result->fetch_assoc();
   $project = $row["Project"];
   $minutes = $row["Minutes"];
-  
-  edit_time($mysql, $collegue, $project, $minutes);  
-  echo "Added $minutes minutes to $project by $collegue";
-
+  if ($minutes > 0) {
+    edit_time($mysql, $collegue, $project, $minutes);  
+    echo "Added $minutes minutes to $project by $collegue";
+  }
   abort_worker($mysql, $collegue);
 }
 
@@ -140,12 +167,15 @@ if (key_exists("collegue", $_POST) && key_exists("project", $_POST) && key_exist
 } else if (key_exists("table", $_POST)) {
   show_time($mysql, $_POST["table"]);
   exit();
-} else if (key_exists("project", $_POST)) {
-  if ($_POST["project"] == "abort") {
+} else if (key_exists("whatDo", $_POST)) {
+  if ($_POST["whatDo"] == "abort") {
     abort_worker($mysql, $_POST["collegue"]);
-  } else if ($_POST["project"] == "save") {
+  } else if ($_POST["whatDo"] == "save") {
     save_worker($mysql, $_POST["collegue"]);
   }
+  exit();
+} else if (key_exists("collegues", $_POST)) {
+  show_collegues($mysql);
   exit();
 } else if (key_exists("working", $_POST)) {
   show_workers($mysql);
