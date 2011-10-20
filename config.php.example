@@ -1,3 +1,5 @@
+<?php
+
 $config= array(
   "host" => "Your host of choice",
   "user" => "Username of a user your MySQL-server on the host",
