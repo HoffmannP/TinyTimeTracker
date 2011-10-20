@@ -21,7 +21,25 @@ $DatabaseDefinition[TABLE_Worker] = <<<'EOS'
 ) ENGINE = MYISAM;
 EOS;
 
-require_once("config.php");
+@require_once("config.php");
+if ((!isset($config)) || 
+    (!key_exists("host", $config)) ||
+    (!key_exists("user", $config)) ||
+    (!key_exists("password", $config)) ||
+    (!key_exists("database", $config))) {
+  die(<<<EOS
+<html>
+  <head>ERROR in TinyTimeTracker</head>
+  <body>
+    <h1>ERROR</h1>
+      <p>Either your <b>config.php</b> does not exist or one of the necessary array-keys (<em>host</em>, <em>user</em>, <em>password</em>, <em>database</em>) is missing. Please corret this before you try to proceed.
+  </body>
+</html>
+      EOS;
+  );
+}
+
+
 $mysql = new mysqli($config["host"], $config["user"], $config["password"], $config["database"]);
 if ($mysql->connect_errno) {
     printf("Connect failed: %s\n", $mysql->connect_error);
