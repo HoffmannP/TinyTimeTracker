@@ -32,13 +32,12 @@ if ((!isset($config)) ||
   <head>ERROR in TinyTimeTracker</head>
   <body>
     <h1>ERROR</h1>
-      <p>Either your <b>config.php</b> does not exist or one of the necessary array-keys (<em>host</em>, <em>user</em>, <em>password</em>, <em>database</em>) is missing. Please corret this before you try to proceed.
+      <p>Either your <b>config.php</b> does not exist or one of the necessary array-keys (<em>host</em>, <em>user</em>, <em>password</em>, <em>database</em>) is missing. Please correct this before you try to proceed.
   </body>
 </html>
-      EOS;
-  );
+EOS
+);
 }
-
 
 $mysql = new mysqli($config["host"], $config["user"], $config["password"], $config["database"]);
 if ($mysql->connect_errno) {
