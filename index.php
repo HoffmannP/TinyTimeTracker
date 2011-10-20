@@ -29,7 +29,9 @@ if ((!isset($config)) ||
     (!key_exists("database", $config))) {
   die(<<<EOS
 <html>
-  <head>ERROR in TinyTimeTracker</head>
+  <head>
+    <title>ERROR in TinyTimeTracker</title>
+  </head>
   <body>
     <h1>ERROR</h1>
       <p>Either your <b>config.php</b> does not exist or one of the necessary array-keys (<em>host</em>, <em>user</em>, <em>password</em>, <em>database</em>) is missing. Please correct this before you try to proceed.
