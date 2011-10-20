@@ -8,7 +8,7 @@ $DatabaseDefinition[TABLE_Time] = <<<'EOS'
 (
 `Project`  VARCHAR( 100 )   NOT NULL ,
 `Collegue` VARCHAR( 100 )   NOT NULL ,
-`Minutes`  TINYINT UNSIGNED NOT NULL ,
+`Minutes`  INT UNSIGNED     NOT NULL ,
 `Stamp`    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE = MYISAM;
 EOS;
@@ -57,7 +57,7 @@ function show_collegues($mysql) {
 
 function show_time($mysql, $categorie) {
   if (!is_null($categorie)) {
-    $WHERE = " WHERE `Project` like '" . $categorie . "%'";
+    $WHERE = " WHERE `Project` like '" . $mysql->real_escape_string($categorie) . "%'";
   } else {
     $WHER = "";
   }
@@ -104,6 +104,7 @@ function edit_time($mysql, $collegue, $project, $minutes) {
   $project = $mysql->real_escape_string($project);
   $minutes = $mysql->real_escape_string($minutes);
   $mysql->query("INSERT `$table` SET `Project` = '$project', `Collegue` = '$collegue', `Minutes` = '$minutes'");
+  die($minutes);
   if ($mysql->errno) {die("MySQL insert failed");}
 }
 function show_workers($mysql) {

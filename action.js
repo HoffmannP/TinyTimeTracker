@@ -19,17 +19,20 @@ $(document).ready(function() {
 	}
     col.keyup(ifIsEqual("Kollege"));
 	prj.keyup(ifIsEqual("Projekt"));
-/*
+
 	$("body").keyup(function(e) {
-		if (e.keyCode == '13') {
-		    if ($("#append").css("display") == "none") {
-			    $("#worker input[name=start]").click();
-			} else {
-			    $("#append input[name=submit]").click();
+		if ($("#append").css("display") == "none") {
+			if (e.keyCode == 13) {
+				startRecord();
+			}
+		} else {
+			switch(e.keyCode) {
+			case 13: sendFunc(); break;
+			case 27: overlay.hide(); break;
 			}
 		}
 	});
-*/
+
 	var successFunc = function() {
 		overlay.hide();
 		$("#time").load("index.php", {"table": ""}, afterTimeTableLoad);
@@ -39,7 +42,7 @@ $(document).ready(function() {
 			alert("Bitte den Kollegen angeben");
 			return;
 		}
-		if ((prj.val() == "<Projekt>") || (prf.val() == "")) {
+		if ((prj.val() == "<Projekt>") || (prj.val() == "")) {
 			alert("Bitte das Projekt angeben");
 			return;
 		}
@@ -53,6 +56,7 @@ $(document).ready(function() {
 			},
 			"success": successFunc
 		});
+		$("#collegues").load("index.php", {"collegues": ""}, afterTimeTableLoad);
 	}
 	var clickFunc = function() {
 		min.val("0:00");
@@ -96,17 +100,20 @@ $(document).ready(function() {
 			},
 			"success": successRecord
 		});
+		$("#collegues").load("index.php", {"collegues": ""}, afterTimeTableLoad);
 		overlay.hide();
 	}
+	var doFilter = function() {
+		var filter = window.prompt("FilterPrefix");
+		if (filter === null) {
+			return;
+		}
+		$("#time").load("index.php", {"table": filter}, afterTimeTableLoad);
+	}
 	var afterTimeTableLoad = function() {
+		$("input.addTime").unbind()
 		$("input.addTime").click(clickFunc);
-		$("#filter").click(function() {
-			var filter = window.prompt("FilterPrefix");
-			if (filter === null) {
-				return;
-			}
-			$("#time").load("index.php", {"table": filter}, afterTimeTableLoad);
-		});
+		$("#filter").unbind().click(doFilter);
 	}
 	var successRecord = function(data) {
 		if (data.substr(0, "Duplicate entry".length) == "Duplicate entry") {
@@ -138,6 +145,7 @@ $(document).ready(function() {
 			},
 			"success": successRecord
 		});
+		$("#collegues").load("index.php", {"collegues": ""}, afterTimeTableLoad);
 	}
 	var endRecord = function(button, doparam) {
 		$.ajax({
