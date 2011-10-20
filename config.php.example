@@ -1,0 +1,6 @@
+$config= array(
+  "host" => "Your host of choice",
+  "user" => "Username of a user your MySQL-server on the host",
+  "password" => "Password of this user",
+  "database" => "The name of the database this user should use for project time track"
+);
