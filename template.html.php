@@ -2,13 +2,13 @@
 <html>
   <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
-	<title>KT ProjectTimeTrack</title>
+	<title><?php echo $config["title"] ?></title>
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="action.js"></script>
 	<link rel="stylesheet" type="text/css" href="look.css">
   </head>
   <body>
-	<h1>KT ProjectTimeTrack</h1>
+	<h1><?php echo $config["title"] ?></h1>
 	<table id="time">
 	</table>
 	<table id="working">
