@@ -21,7 +21,8 @@ $DatabaseDefinition[TABLE_Worker] = <<<'EOS'
 ) ENGINE = MYISAM;
 EOS;
 
-$mysql = new mysqli("localhost", "ProjectTimeTrack", "WWc2qYGKxjuqHbUF", "ProjectTimeTrack");
+require_once("config.php");
+$mysql = new mysqli($config["host"], $config["user"], $config["password"], $config["database"]);
 if ($mysql->connect_errno) {
     printf("Connect failed: %s\n", $mysql->connect_error);
     exit();
