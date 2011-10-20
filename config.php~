@@ -1,0 +1,8 @@
+<?php
+
+$collegues = [
+  "Ber",
+  "Marc",
+  "Torsten",
+  "Simone"
+];
