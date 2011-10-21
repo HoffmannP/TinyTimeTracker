@@ -92,7 +92,7 @@ function show_time($mysql, $categorie) {
   }
   
   // Fetch projects
-  $result = $mysql->query("SELECT DISTINCT `Project` FROM `$table`" . $WHERE);
+  $result = $mysql->query("SELECT DISTINCT `Project` FROM `$table`" . $WHERE . " ORDER BY `Project`");
   if ($mysql->errno) {die("MySQL project query failed");}
   $n = $result->num_rows;
   $Project = array();
