@@ -169,15 +169,15 @@ $(document).ready(function() {
 			$(this).select();
 		});
 	}
-	$("#append input[type=text]").click(function(event) {
-		$(this).focus()
-		$(this).select();
-	});
     $("#time").load("index.php", {"table": ""}, afterTimeTableLoad);
     $("#working").load("index.php", {"working": ""}, afterWorkerTableLoad);
     $("#collegues").load("index.php", {"collegues": ""}, afterTimeTableLoad);
 	$("#append input[name=submit]").click(sendFunc);
 	$("#append input[name=addWork]").click(addWorker);
+	$("#append input[type=text]").click(function(event) {
+		$(this).focus()
+		$(this).select();
+	});
 	$("#shaddow").click(function() {
 		overlay.hide();
 	});
