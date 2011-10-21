@@ -123,8 +123,9 @@ function edit_time($mysql, $collegue, $project, $minutes) {
   $project = $mysql->real_escape_string($project);
   $minutes = $mysql->real_escape_string($minutes);
   $mysql->query("INSERT `$table` SET `Project` = '$project', `Collegue` = '$collegue', `Minutes` = '$minutes'");
-  die($minutes);
-  if ($mysql->errno) {die("MySQL insert failed");}
+  if ($mysql->errno) {
+    die("MySQL insert failed");
+  }
 }
 function show_workers($mysql) {
   $table = TABLE_Worker;
@@ -187,7 +188,7 @@ if (key_exists("collegue", $_POST) && key_exists("project", $_POST) && key_exist
 } else if (key_exists("table", $_POST)) {
   show_time($mysql, $_POST["table"]);
   exit();
-} else if (key_exists("whatDo", $_POST)) {
+} else if (key_exists("collegue", $_POST) && key_exists("whatDo", $_POST)) {
   if ($_POST["whatDo"] == "abort") {
     abort_worker($mysql, $_POST["collegue"]);
   } else if ($_POST["whatDo"] == "save") {
