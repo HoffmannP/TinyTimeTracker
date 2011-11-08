@@ -9,10 +9,10 @@
   </head>
   <body>
 	<h1><?php echo $config["title"] ?></h1>
-	<table id="time">
-	</table>
-	<table id="working">
-	</table>
+   	<div id="wrapTime"><table id="time">
+	</table></div>
+	<div id="wrapWorking"><table id="working">
+	</table></div>
 	<div id="collegues">
     </div>
 	<div id="shaddow"></div>
