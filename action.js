@@ -108,7 +108,7 @@ $(document).ready(function() {
 		if (filter === null) {
 			return;
 		}
-		$("#time").load("index.php", {"table": filter}, afterTimeTableLoad);
+		$("table#time").load("index.php", {"table": filter}, afterTimeTableLoad);
 	}
 	var afterTimeTableLoad = function() {
 		$("input.addTime").unbind()
@@ -122,7 +122,7 @@ $(document).ready(function() {
 			return;
 		}
 		if (data.substr(0, "Added ".length) == "Added ") {
-			$("#time").load("index.php", {"table": ""}, afterTimeTableLoad);
+			$("time#time").load("index.php", {"table": ""}, afterTimeTableLoad);
 		}
 		$("#working").load("index.php", {"working": ""}, afterWorkerTableLoad);
 	}
@@ -181,6 +181,4 @@ $(document).ready(function() {
 	$("#shaddow").click(function() {
 		overlay.hide();
 	});
-
-
 });

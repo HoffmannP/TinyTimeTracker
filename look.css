@@ -1,134 +1,153 @@
 body {
-  background-color: Ivory;
+    background-color: Ivory;
 }
 h1 {
-  font-family: "Comic Sans MS";
-  text-align:center;
-  color: DimGrey;
-  border: 2px LightBlue outset;
-  border-radius: 5px;
-  margin: 15px;
-  margin-bottom: 45px;
-  padding: 5px 0px;
+    font-family: "Comic Sans MS";
+    text-align:center;
+    color: DimGrey;
+    border: 2px LightBlue outset;
+    border-radius: 5px;
+    margin: 15px;
+    margin-bottom: 45px;
+    padding: 5px 0px;
 }
 table {
-  margin: auto;
-  padding: 20px;
-  font-family: sans-serif;
-  border-collapse: collapse;
+    font-family: sans-serif;
+    border-collapse: collapse;
 }
+#time {
+    width: 800px;
+    padding: 20px;
+}
+#wrapTime {
+    overflow: auto;        
+    height: 550px;
+    position: absolute;
+    left: 50%;
+    margin-left: -410px;
+    width: 820px;
+}
+
 tr.even {
-  background-color: #EEEEE0;
+    background-color: #EEEEE0;
 }
 tr.sum { 
-  padding-top: 5px;
-  border-top: 3px solid DimGrey;
-  color: DarkRed;
+    padding-top: 5px;
+    border-top: 3px solid DimGrey;
+    color: DarkRed;
 }
 tr.sum td { 
-  padding-top: 10px;
+    padding-top: 10px;
 }
 th {
-  text-align: left;
-  font-size: 20px;
+    text-align: left;
+    font-size: 20px;
 }
 td {
-  font-size: 18px;
-  padding-right: 20px
+    font-size: 18px;
+    padding-right: 20px
 }
 td+td+td {
-  padding-right:0px
+    padding-right:0px
 }
 span#filter { 
-  color: Blue;
+    color: Blue;
 }
 input.addTime, #working input[type=button] {
-  font-size: 15px;
-  border: 2px LightBlue outset;
-  background-color: #EEEEE0;
-  border-radius: 5px;
+    font-size: 15px;
+    border: 2px LightBlue outset;
+    background-color: #EEEEE0;
+    border-radius: 5px;
 }
 tr.even input.addTime, #working tr.even input[type=button] { 
-  background-color: Ivory;
+    background-color: Ivory;
 }
-div#collegues { 
-  position: absolute;
-  bottom: 20px;
-  width: 96%;
-  right: 2%;
-  text-align: right;
+#collegues { 
+    position: absolute;
+    bottom: 20px;
+    width: 96%;
+    right: 2%;
+    text-align: right;
 }
 input.addTime.free, input.addTime.named { 
-  border-style: none;
-  font-weight: bold;
-  margin-left: 5px;
-  background-color: DimGrey;
-  color: Ivory;
+    border-style: none;
+    font-weight: bold;
+    margin-left: 5px;
+    background-color: DimGrey;
+    color: Ivory;
 }
 #shaddow {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: black;
-  opacity: 0.8;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: black;
+    opacity: 0.8;
 }
 #append {
-  position: absolute;
-  width: 200px;
-  height: 184px;
-  left: 50%;
-  margin-left: -80px;
-  top: 50%;
-  margin-top: -92px;
-  background-color: Ivory;
-  border: 2px inset LightBlue;
-  border-radius: 5px;
-  padding: 0 0 25px 30px;
-  font-size: 12px;
+    position: absolute;
+    width: 200px;
+    height: 184px;
+    left: 50%;
+    margin-left: -80px;
+    top: 50%;
+    margin-top: -92px;
+    background-color: Ivory;
+    border: 2px inset LightBlue;
+    border-radius: 5px;
+    padding: 0 0 25px 30px;
+    font-size: 12px;
 }
 #append h2 {
-  font-family: sans-serif;
+    font-family: sans-serif;
 }
 #append input {
-  height: 18px;
-  margin-bottom: 4px;
-  background-color: Ivory;
-  border: 2px inset LightBlue;
-  width: 160px;
-  font-size: 15px;
+    height: 18px;
+    margin-bottom: 4px;
+    background-color: Ivory;
+    border: 2px inset LightBlue;
+    width: 160px;
+    font-size: 15px;
 }
 #append input[type=button]{ 
-  border-color: LightBlue;
-  font-size: 13px;
+    border-color: LightBlue;
+    font-size: 13px;
 }
 #append input[name=addWork] {
-  width: 78px;
-  height: 50px;
-  float: left;
+    width: 78px;
+    height: 50px;
+    float: left;
 }
 #append input[name=submit] {
-  margin-left: 4px;
-  width: 82px;
-  height: 22px;
+    margin-left: 4px;
+    width: 82px;
+    height: 22px;
 }
 #append input[name=minutes] {
-  margin-left: 4px;
-  width: 78px;
+    margin-left: 4px;
+    width: 78px;
 }
 
 #working {
-  position: absolute;
-  left: 50%;
-  bottom: 100px;
-  margin-left: -200px;
-  width: 400px;
+    width: 800px;
+}
+#wrapWorking {
+    overflow: auto;
+    position: absolute;
+    left: 50%;
+    bottom: 100px;
+    margin-left: -410px;
+    height: 130px;
+    width: 820px;
 }
 #working td, #working td input[type=text] {
-  width: 100px;
+    width: 120px;
+}
+#working td+td, #working td+td input[type=text] {
+    width: 470px;
 }
 #working td+td+td+td { 
-  width: 80px;
-  text-align: center;
+    width: 80px;
+    text-align: center;
 }

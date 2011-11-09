@@ -41,9 +41,12 @@ EOS
 );
 }
 
-$mysql = new mysqli($config["host"], $config["user"], $config["password"], $config["database"]);
+if (!key_exists("port", $config)) {
+  $config["port"] = ini_get("mysqli.default_port");
+}
+$mysql = new mysqli($config["host"], $config["user"], $config["password"], $config["database"], $config["port"]);
 if ($mysql->connect_errno) {
-    printf("Connect failed: %s\n", $mysql->connect_error);
+    printf("Connection failed: %s\n", $mysql->connect_error);
     exit();
 }
 $mysql->query("CREATE TABLE IF NOT EXISTS `" . TABLE_Time . "` " . $DatabaseDefinition[TABLE_Time]);
