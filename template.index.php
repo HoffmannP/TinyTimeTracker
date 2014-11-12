@@ -16,6 +16,8 @@
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.css">
+  <script type="text/javascript" src="../moment/moment.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/locales.min.js"></script>
   <!-- specific js/css files -->
   <script type="text/javascript" src="action.js"></script>
   <link rel="stylesheet" type="text/css" href="look.css">
@@ -34,8 +36,7 @@
       </div>
       <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
         <ul class="nav navbar-nav">
-          <li><a href="#newProject">Neues Projekt</a></li>
-          <li><a href="#filter">Filtern</a></li>
+          <li><a href="#new">Neues Projekt</a></li>
           <li><a href="#catch">Zeit erfassen</a></li>
           <li><a href="#entry">Neuer Eintrag</a></li>
         </ul>
@@ -45,18 +46,69 @@
       </nav>
     </div>
   </header>
-  <main>
-    <table class="container" id="time">
-      <thead>
-        <tr>
-          <th>Projekt</th>
-          <th>Einträge</th>
-          <th>Summe</th>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </main>
+  <div class="container">
+    <article class="time">
+      <h3>Projekte</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Projekt</th>
+            <th>Einträge</th>
+            <th>Arbeitszeit</th>
+            <th>Erster Eintrag</th>
+            <th>Letzter Eintrag</th>
+          </tr>
+        </thead>
+      </table>
+    </article>
+    <article class="projekt">
+      <h3>Projektname</h3>
+      <div><a href="#"><i class="fa fa-reply">&nbsp;</i> zur Übersicht</a></div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Projekt</th>
+            <th>Dauer</th>
+            <th>Begin</th>
+          </tr>
+        </thead>
+      </table>
+    </article>
+    <div class="dialog">
+      <dialog class="new">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <h4 class="col-sm-10 col-sm-offset-2">neues Projekt</h4>
+          </div>
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Name:</label>
+            <div style="" class="col-sm-10">
+              <input name="name" placeholder="Name" class="form-control" type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="parent" class="col-sm-2 control-label">Eltern:</label>
+            <div class="col-sm-10">
+              <select>
+                <option value="">- ohne -</option>
+                <option value="KT">KT</option>
+                <option value="GLS">GLS</option>
+                <option value="SEfU">SEfU</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-default">anlegen</button>
+            </div>
+          </div>
+        </form>
+      </dialog>
+      <dialog class="catch"></dialog>
+      <dialog class="entry"></dialog>
+    </div>
+  </div>
 </body>
 <script>$(start)</script>
 </html>

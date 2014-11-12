@@ -4,3 +4,45 @@ body {
 header nav i.fa {
     font-size: 18px;
 }
+
+article {
+    display: none;
+}
+
+table {
+    width: 100%;
+}
+
+dialog:not([open]) {
+    display: none;
+}
+
+dialog.new {
+    height: 210px;
+    margin-top: -105px;
+}
+
+dialog {
+	background-image: -webkit-linear-gradient(top,#8EC9DD 0,#CCE7EF 100%);
+	background-image: -o-linear-gradient(top,#8EC9DD 0,#CCE7EF 100%);
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#8EC9DD),to(#CCE7EF));
+	background-image: linear-gradient(to bottom,#8EC9DD 0,#CCE7EF 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8EC9DD', endColorstr='#CCE7EF', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	background-repeat: repeat-x;
+
+      z-index: 1000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    height: 400px;
+    width: 400px;
+
+    margin-top: -200px;
+    margin-left: -200px;
+
+    border: 1px solid #ADD8E6;
+
+    padding: 5px;
+}
