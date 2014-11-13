@@ -36,9 +36,7 @@
       </div>
       <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
         <ul class="nav navbar-nav">
-          <li><a href="#new">Neues Projekt</a></li>
-          <li><a href="#catch">Zeit erfassen</a></li>
-          <li><a href="#entry">Neuer Eintrag</a></li>
+          <li><a href="#add"><i class="fa fa-plus-circle">&nbsp;</i></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a target="_new" href="https://github.com/HoffmannP/TinyTimeTracker"><i class="fa fa-github fa">&nbsp;</i></a></li>
@@ -75,40 +73,38 @@
         </thead>
       </table>
     </article>
-    <div class="dialog">
-      <dialog class="new">
-        <form class="form-horizontal">
-          <div class="form-group">
-            <h4 class="col-sm-10 col-sm-offset-2">neues Projekt</h4>
+    <div class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">neues Projekt</h4>
           </div>
-          <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">Name:</label>
-            <div style="" class="col-sm-10">
-              <input name="name" placeholder="Name" class="form-control" type="text">
+          <div class="modal-body">
+            <span class="label">Für: </span>
+            <!-- Single button -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                Projekt <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Neues Projekt</a></li>
+                <li class="divider"></li>
+                <li><a href="#">KT</a></li>
+                <li><a href="#">GLS</a></li>
+                <li><a href="#">SEfU</a></li>
+              </ul>
             </div>
           </div>
-          <div class="form-group">
-            <label for="parent" class="col-sm-2 control-label">Eltern:</label>
-            <div class="col-sm-10">
-              <select>
-                <option value="">- ohne -</option>
-                <option value="KT">KT</option>
-                <option value="GLS">GLS</option>
-                <option value="SEfU">SEfU</option>
-              </select>
-            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+            <button type="button" class="btn btn-primary">Anlegen</button>
           </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button class="btn btn-default">anlegen</button>
-            </div>
-          </div>
-        </form>
-      </dialog>
-      <dialog class="catch"></dialog>
-      <dialog class="entry"></dialog>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 </body>
 <script>$(start)</script>
 </html>
